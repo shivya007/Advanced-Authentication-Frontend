@@ -75,3 +75,33 @@ export const refreshAccessToken = async() =>{
         throw new Error(error || "Generating new access token failed");
     }
 }
+
+
+export const forgotPassword = async (data) =>{
+    try {
+        const response = await axios.post(`${API_URL}/api/users/forgot-password`, data);
+        return response.data;
+    } catch (error) {
+        throw error.response.data || { message: "Failed to send reset link" };
+
+    }
+}
+
+export const verifyOTPPassword = async (data) =>{
+    try {
+        const response = await axios.post(`${API_URL}/api/users/verify-reset-otp`, data);
+        return response.data;
+    } catch (error) {
+        throw error.response.data || { message: "Failed to verify OTP" };    
+    }
+}
+
+
+export const resetPassword = async (data) =>{
+    try {
+        const response = await axios.post(`${API_URL}/api/users/reset-password`, data);
+        return response.data;
+    } catch (error) {
+        throw error.response.data || { message: "Failed to reset password" };
+    }
+}

@@ -68,6 +68,10 @@ function Login() {
         <Input icon={Mail} type='email' placeholder='email address' value={email} onChange={(e) => setEmail(e.target.value)}  />
         <Input icon={Lock} type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)}  />
 
+        <div className="text-right text-sm mt-2">
+          <Link to={"/forgot-password"} className="text-green-400 hover:underline">Forgot Password?</Link>
+        </div>
+
         {error && (
             <p className="text-red-400 mt-2 text-sm text-center">{error}</p>
           )

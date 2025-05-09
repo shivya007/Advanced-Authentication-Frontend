@@ -8,6 +8,8 @@ import OTPVerification from "./pages/OTPVerification"
 import Dashboard from "./pages/Dashboard"
 import PrivateRoute from "./components/PrivateRoute"
 import NotFound from './components/NotFound';
+import ForgotPassword from './pages/ForgotPassword';
+import UpdatePassword from './pages/UpdatePassword';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/verify-otp" element={<OTPVerification/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        <Route path='/update-password' element ={<UpdatePassword/>}/>
         <Route path="*" element={<NotFound />}/>
       </Routes>
 

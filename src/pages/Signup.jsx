@@ -1,16 +1,17 @@
 import { motion as Motion } from 'framer-motion'
 import React, { useState } from 'react'
 import Input from '../components/Input.jsx'
-import {Lock, Mail, User} from 'lucide-react'
+import {Eye, EyeOff, Lock, Mail, User} from 'lucide-react'
 import {Link, useNavigate} from 'react-router-dom'
-import PasswordStrength from '../components/PasswordStrength.jsx'
 import { signupUser } from '../services/userService.js'
 import { toast } from 'react-toastify';
+import PasswordStrengthMeter from '../components/PasswordStrengthMeter.jsx'
 
 function Signup() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [isLoading, setisLoading] = useState(false);
 
@@ -67,9 +68,18 @@ function Signup() {
 
                 <Input icon={User} type='text' placeholder='Full Name' value={name} onChange={(e) => setName(e.target.value)}  />
                 <Input icon={Mail} type='email' placeholder='email address' value={email} onChange={(e) => setEmail(e.target.value)}  />
-                <Input icon={Lock} type='password' placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)}  />
+                <div className='relative w-full'> 
+                <Input icon={Lock} type={showPassword ? "text" : "password"} placeholder='password' value={password} onChange={(e) => setPassword(e.target.value)}  />
+                <button type='button' className='absolute inset-y-0 right-0 pr-3 flex items-center' onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? (
+                  <EyeOff className='size-5 text-base-content/40'/>
+                ) : (
+                  <Eye className='size-5 text-base-content/40'/>
+                )}
+               </button>
+                </div>
 
-                <PasswordStrength password={password}/>
+                <PasswordStrengthMeter password={password}/>
 
                 {error && <p className='text-red-500 text-sm mt-2'>{error}</p>}
 
