@@ -34,7 +34,6 @@ Promise Chaining Approach
     const checkProfile = async() =>{
         try{
         const responsefrombackend = await getProfile();
-        console.log("SEE SEE: ", responsefrombackend.data.user);
             setUser(responsefrombackend.data.user); // Setting the user in the context
             setLoading(false);
             return responsefrombackend;
