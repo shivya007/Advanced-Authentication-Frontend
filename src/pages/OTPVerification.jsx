@@ -50,6 +50,7 @@ function OTPVerification() {
                 otp: verificationCode,
             }
             const response = await verifyOtp(data);
+            await new Promise(resolve => setTimeout(resolve, 300));
             toast.success(response.message || "Email verified successfully!");
 
             navigate("/");
